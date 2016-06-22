@@ -1,0 +1,11 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "^6.1"
+    },
+    "autoload":{
+    "psr-4" : {
+        "albov\\App\\": "src/albov/App/"
+    }
+}
+
+}

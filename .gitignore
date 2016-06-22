@@ -1,0 +1,5 @@
+# Created by .ignore support plugin (hsz.mobi)
+/vendor
+/database-mongo
+/database-mysql
+/composer.lock
