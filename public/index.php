@@ -2,6 +2,5 @@
 require_once "../bootstrap.php";
 require_once "../config.php";
 
-$push = new \albov\App\PushNotification();
-
-var_dump($push->push());
+$pushNotification = new \albov\App\PushNotification();
+$pushNotification->push('google');
