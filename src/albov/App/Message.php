@@ -13,6 +13,11 @@ class Message
     private $title;
     private $text;
 
+    /**
+     * @param $title
+     * @param $text
+     * @return $this
+     */
     public function fill($title, $text)
     {
         $this->title = $title;
@@ -21,6 +26,9 @@ class Message
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function render(){
         return
             [

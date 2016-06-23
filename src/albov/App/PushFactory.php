@@ -8,20 +8,25 @@
  */
 namespace albov\App;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Stream;
+use albov\App\Contract\PushContract;
 
 class PushFactory
 {
     const ANDROID = 'android';
     const IOS = 'ios';
 
+    /**
+     * @param $os
+     * @return PushContract
+     */
     public static function getInstance($os){
-        if($os == self::ANDROID){
-            return new GcmPushNotification();
-        }
-        else if($os== self::IOS){
+
+        switch ($os){
+            case self::ANDROID:
+                return new GcmPushNotification();
+                break;
+            case self::IOS:
+                break;
 
         }
     }
