@@ -1,11 +1,20 @@
 {
+    "name": "albo-vieira/push-notification",
+    "description": "Send notifications for device mobiles",
     "require": {
         "guzzlehttp/guzzle": "^6.1"
     },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Albo Vieira",
+            "email": "albovieira@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
     "autoload":{
-    "psr-4" : {
-        "albov\\App\\": "src/albov/App/"
+        "psr-4" : {
+            "albov\\App\\": "src/albov/App/"
+        }
     }
-}
-
 }
