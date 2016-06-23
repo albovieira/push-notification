@@ -32,14 +32,21 @@ class GcmPushNotification implements PushContract
      */
     public function push(){
 
-        $client = new Client();
-        $response = $client->post(API_SEND_URL,[
-            'headers' => self::headers(),
-            'json'    => $this->dataToSend(),
-        ]);
+        try{
 
-        if($response->getStatusCode() == 200){
-            return true;
+            $client = new Client();
+            $response = $client->post(API_SEND_URL,[
+                'headers' => self::headers(),
+                'json'    => $this->dataToSend(),
+            ]);
+
+            if($response->getStatusCode() == 200){
+                return ['status' => 'success'];
+            }
+        }
+        catch (\Exception $e){
+
+            return ['status' => 'failure', 'message' => $e->getMessage()];
         }
     }
 
@@ -58,27 +65,26 @@ class GcmPushNotification implements PushContract
      */
     public function dataToSend(){
         return [
-            'to' 	=> $this->tokens,
+            'registration_ids' 	=> $this->tokens,
             'notification'	=> $this->msg->render()
         ];
     }
 
     /**
-     * @param $token
+     * @param $tokens
      * @return $this
      */
-    public function withToken($token){
-        $this->tokens = $token;
+    public function withTokens($tokens){
+        $this->tokens = $tokens;
         return $this;
     }
 
     /**
-     * @param $title
-     * @param $text
+     * @param $options
      * @return $this
      */
-    public function withNotificationContent($title, $text){
-        $this->msg->fill($title, $text);
+    public function withNotificationContent(array $options){
+        $this->msg->fill($options);
         return $this;
     }
 

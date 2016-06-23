@@ -14,14 +14,13 @@ class Message
     private $text;
 
     /**
-     * @param $title
-     * @param $text
+     * @param $options
      * @return $this
      */
-    public function fill($title, $text)
+    public function fill(array $options)
     {
-        $this->title = $title;
-        $this->text = $text;
+        $this->title = $options['title'];
+        $this->text = $options['text'];
 
         return $this;
     }

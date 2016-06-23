@@ -37,14 +37,13 @@ interface PushContract
      * @param $tokens
      * @return mixed
      */
-    public function withToken($tokens);
+    public function withTokens($tokens);
 
     /**
      * Set a content for notification
      *
-     * @param $title
-     * @param $text
+     * @param $options
      * @return mixed
      */
-    public function withNotificationContent($title, $text);
+    public function withNotificationContent(array $options);
 }
