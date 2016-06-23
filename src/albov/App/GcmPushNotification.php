@@ -17,7 +17,8 @@ class GcmPushNotification implements PushContract
 {
 
     private $msg;
-    private $client;
+    private $tokens;
+    private $notification;
 
     /**
      * PushNotification constructor.
@@ -25,14 +26,14 @@ class GcmPushNotification implements PushContract
     public function __construct()
     {
         $this->msg = new Message();
-        $this->client = new Client();
     }
 
-    public function push(){
-        
-        $response = $this->client->post(API_SEND_URL,[
+    public function push($title,$text){
+
+        $client = new Client();
+        $response = $client->post(API_SEND_URL,[
             'headers' => self::headers(),
-            'json'    => $this->dataToSend('p1',[]),
+            'json'    => $this->msg->render(),
         ]);
 
         if($response->getStatusCode() == 200){
@@ -47,11 +48,21 @@ class GcmPushNotification implements PushContract
         ];
     }
 
-    public function dataToSend($token, array $options){
+    public function dataToSend(){
         return [
-            'to' 	=> 'coelvf6GOFY:APA91bHg0K7fr5kjNxKNSEecltaYQWnpuXnRT81vIaQyr4j2u9A_MsKIG9EpgQe_9EvIUyHB0zQiiNIkm1RDaimFf-VX0uxKpV3yaph1P9_uq9oel1nzC-K5v6CvHt7-4mAHx6x2425z',
-            'notification'	=> Message::mockMsg()
+            'to' 	=> $this->tokens,
+            'notification'	=> $this->notification
         ];
+    }
+
+    public function withToken($token){
+        $this->tokens = $token;
+        return $this;
+    }
+
+    public function withNotificationContent($title, $text){
+        $this->msg->fill($title, $text);
+        return $this;
     }
 
 }

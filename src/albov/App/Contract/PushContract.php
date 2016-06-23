@@ -10,7 +10,8 @@ namespace albov\App\Contract;
 
 interface PushContract
 {
-    public function push();
-    public static function headers();
+    //public function push($tokens);
+   /* public static function headers();
     public function dataToSend($token, array $options);
+    public function setNotification(array $data);*/
 }

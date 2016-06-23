@@ -12,16 +12,12 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Stream;
 
-class PushManager
+class PushFactory
 {
     const ANDROID = 'android';
     const IOS = 'ios';
 
-    /**
-     * PushManager constructor.
-     */
-    public function __construct($os)
-    {
+    public static function getInstance($os){
         if($os == self::ANDROID){
             return new GcmPushNotification();
         }
@@ -29,4 +25,5 @@ class PushManager
 
         }
     }
+
 }

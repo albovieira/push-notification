@@ -13,22 +13,19 @@ class Message
     private $title;
     private $text;
 
-    /**
-     * Message constructor.
-     * @param $data
-     */
-    public function fill($data)
+    public function fill($title, $text)
     {
-        $this->title = !empty($data['title']) ? $data['title'] : '';
-        $this->text = !empty($data['text']) ? $data['text'] : '';
+        $this->title = $title;
+        $this->text = $text;
 
+        return $this;
     }
 
-    public static function mockMsg(){
+    public function render(){
         return
             [
-                'title'		=> 'Vamos praticar?',
-                'text' 	=> 'A pratica leva a perfeicao',
+                'title'		=> $this->title,
+                'text' 	=> $this->text,
             ];
     }
 }
