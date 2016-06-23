@@ -2,7 +2,9 @@
 doing
 
 # Install
-Add albo-vieira/push-notification:dev in your composer.json
+```sh
+composer require albo-vieira/push-notification && install 
+```
 
 # Usage
 ```sh
