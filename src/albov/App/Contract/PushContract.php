@@ -11,11 +11,11 @@ namespace albov\App\Contract;
 interface PushContract
 {
     /**
-     * Push the notification
+     * Send a push notification
      *
      * @return mixed
      */
-    public function push();
+    public function send();
 
     /**
      * Set a token for push the notifications

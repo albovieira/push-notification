@@ -30,7 +30,7 @@ class GcmPushNotification implements PushContract
     /**
      * @return bool
      */
-    public function push(){
+    public function send(){
 
         try{
 
