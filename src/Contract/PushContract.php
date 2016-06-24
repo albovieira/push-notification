@@ -1,12 +1,6 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: albo-vieira
- * Date: 23/06/16
- * Time: 11:49
- */
-namespace albov\App\Contract;
+namespace PushNotification\Contract;
 
 interface PushContract
 {

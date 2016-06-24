@@ -1,17 +1,9 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: albo-vieira
- * Date: 21/06/16
- * Time: 22:42
- */
-namespace albov\App;
+namespace PushNotification;
 
-use albov\App\Contract\PushContract;
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Stream;
+use PushNotification\Contract\PushContract;
 
 class GcmPushNotification implements PushContract
 {

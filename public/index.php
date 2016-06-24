@@ -3,7 +3,7 @@ require_once "../bootstrap.php";
 require_once "../config.php";
 
 /** @var  $instance */
-$android = \albov\App\PushFactory::getInstance('android');
+$android = PushNotification\PushFactory::getInstance('android');
 $android
     ->withTokens([
     'TOKEN',

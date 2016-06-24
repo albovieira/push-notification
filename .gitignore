@@ -3,3 +3,4 @@
 /database-mongo
 /database-mysql
 /composer.lock
+config.php

@@ -1,14 +1,8 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: albo-vieira
- * Date: 21/06/16
- * Time: 22:42
- */
-namespace albov\App;
+namespace PushNotification;
 
-use albov\App\Contract\PushContract;
+use PushNotification\Contract\PushContract;
 
 class PushFactory
 {
