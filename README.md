@@ -1,5 +1,5 @@
 # push-notification
-doing
+Send push-notifications for Android(with GCM) and IOS.
 
 # Install
 ```sh
@@ -11,7 +11,7 @@ composer require albo-vieira/push-notification && install
 $android = \albov\App\PushFactory::getInstance('android');
 $android
     ->withToken('YOUR TOKEN')
-    ->withNotificationContent('Titulo', 'texto')
-    ->push();
+     ->withNotificationContent(['title' => 'title', 'text' => 'Texto'])
+    ->send();
 
 ```
