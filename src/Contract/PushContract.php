@@ -25,5 +25,5 @@ interface PushContract
      * @param $options
      * @return mixed
      */
-    public function withNotificationContent(array $options);
+    public function withNotification(array $options);
 }

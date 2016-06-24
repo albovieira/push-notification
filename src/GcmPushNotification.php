@@ -10,6 +10,7 @@ class GcmPushNotification implements PushContract
 
     private $msg;
     private $tokens;
+    const FAILURE = 1;
 
     /**
      * PushNotification constructor.
@@ -32,8 +33,16 @@ class GcmPushNotification implements PushContract
                 'json'    => $this->dataToSend(),
             ]);
 
-            if(!$response->getStatusCode() == 200){
-                throw new \Exception('Sometinh wrong here!');
+            if ($response->getStatusCode() !== 200) {
+                throw new \Exception('Something wrong here!');
+            }
+
+            $data = json_decode($response->getBody()->getContents());
+            $results = $data->results;
+
+            if ($data->failure == self::FAILURE) {
+                $errors = reset($results)->error;
+                throw new \Exception($errors);
             }
 
             return ['status' => 'success'];
@@ -78,7 +87,8 @@ class GcmPushNotification implements PushContract
      * @param $options
      * @return $this
      */
-    public function withNotificationContent(array $options){
+    public function withNotification(array $options)
+    {
         $this->msg->fill($options);
         return $this;
     }

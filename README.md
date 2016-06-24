@@ -8,10 +8,11 @@ composer require albo-vieira/push-notification:dev-master && install
 
 # Usage
 ```sh
-$android = \albov\App\PushFactory::getInstance('android');
+$android = PushNotification\PushFactory::getInstance('android');
 $android
-    ->withToken('YOUR TOKEN')
-     ->withNotificationContent(['title' => 'title', 'text' => 'Texto'])
+    ->withTokens([
+    'TOKEN',
+    ])
+    ->withNotification(['title' => 'title', 'text' => 'Texto'])
     ->send();
-
 ```
