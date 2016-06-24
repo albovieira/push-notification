@@ -40,9 +40,12 @@ class GcmPushNotification implements PushContract
                 'json'    => $this->dataToSend(),
             ]);
 
-            if($response->getStatusCode() == 200){
-                return ['status' => 'success'];
+            if(!$response->getStatusCode() == 200){
+                throw new \Exception('Sometinh wrong here!');
             }
+
+            return ['status' => 'success'];
+
         }
         catch (\Exception $e){
 
