@@ -56,7 +56,7 @@ class GcmPushNotification implements PushContract
     /**
      * @return array
      */
-    public static function headers(){
+    private static function headers(){
         return [
             'Authorization' => 'key='.API_ACCESS_KEY,
             'Content-Type' => 'application/json'
@@ -66,7 +66,7 @@ class GcmPushNotification implements PushContract
     /**
      * @return array
      */
-    public function dataToSend(){
+    private function dataToSend(){
         return [
             'registration_ids' 	=> $this->tokens,
             'notification'	=> $this->msg->render()

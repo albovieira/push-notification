@@ -18,20 +18,6 @@ interface PushContract
     public function push();
 
     /**
-     * Retrives the http header
-     *
-     * @return array
-     */
-    public static function headers();
-
-    /**
-     * Retrives the data to send
-     *
-     * @return array
-     */
-    public function dataToSend();
-
-    /**
      * Set a token for push the notifications
      *
      * @param $tokens
