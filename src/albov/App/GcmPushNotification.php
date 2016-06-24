@@ -58,7 +58,7 @@ class GcmPushNotification implements PushContract
      */
     private static function headers(){
         return [
-            'Authorization' => 'key='.API_ACCESS_KEY,
+            'Authorization' => 'key='.API_GOOGLE_KEY,
             'Content-Type' => 'application/json'
         ];
     }
