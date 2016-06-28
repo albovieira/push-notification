@@ -4,13 +4,12 @@ namespace PushNotification\Gcm;
 
 use GuzzleHttp\Client;
 use PushNotification\Contract\PushContract;
+use PushNotification\PushNotification;
 
-class GcmPushNotification implements PushContract
+class GcmPushNotification extends PushNotification implements PushContract
 {
 
-    private $msg;
-    private $tokens;
-    const FAILURE = 1;
+    private $response;
 
     /**
      * PushNotification constructor.
@@ -21,7 +20,9 @@ class GcmPushNotification implements PushContract
     }
 
     /**
-     * @return bool
+     * Send a push notification
+     *
+     * @return array
      */
     public function send(){
 
@@ -36,6 +37,8 @@ class GcmPushNotification implements PushContract
             if ($response->getStatusCode() !== 200) {
                 throw new \Exception('Something wrong here!');
             }
+
+            $this->response = $response;
 
             $data = json_decode($response->getBody()->getContents());
             $results = $data->results;
@@ -75,22 +78,12 @@ class GcmPushNotification implements PushContract
     }
 
     /**
-     * @param $tokens
-     * @return $this
+     * @return mixed
      */
-    public function withTokens($tokens){
-        $this->tokens = $tokens;
-        return $this;
+    public function getResponse()
+    {
+        return $this->response;
     }
 
-    /**
-     * @param $options
-     * @return $this
-     */
-    public function withNotification(array $options)
-    {
-        $this->msg->fill($options);
-        return $this;
-    }
 
 }

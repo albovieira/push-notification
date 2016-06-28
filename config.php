@@ -4,7 +4,7 @@ define('KEY_GOOGLE', 'AIzaSyA_l5CRTJU8s6bPS2yTBd6fDXabVyiUavs');
 define('GCM_URL', 'https://android.googleapis.com/gcm/send');
 
 define('APNS_URL', 'gateway.sandbox.push.apple.com:2195');
-define('CERTIFICATE_IOS', '../ios_push_certificates/push_cert_dev.pem');
+define('CERTIFICATE_APNS', '../ios_push_certificates/push_cert_dev.pem');
 define('APNS_PASSPHRASE', 'mL32016dev');
 
 
