@@ -2,7 +2,9 @@
 
 namespace PushNotification;
 
+use PushNotification\Apns\ApnsPushNotification;
 use PushNotification\Contract\PushContract;
+use PushNotification\Gcm\GcmPushNotification;
 
 class PushFactory
 {
@@ -20,6 +22,7 @@ class PushFactory
                 return new GcmPushNotification();
                 break;
             case self::IOS:
+                return new ApnsPushNotification();
                 break;
 
         }

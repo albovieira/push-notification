@@ -1,6 +1,6 @@
 <?php
 
-namespace PushNotification;
+namespace PushNotification\Gcm;
 
 use GuzzleHttp\Client;
 use PushNotification\Contract\PushContract;
@@ -28,7 +28,7 @@ class GcmPushNotification implements PushContract
         try{
 
             $client = new Client();
-            $response = $client->post(API_SEND_URL,[
+            $response = $client->post(GCM_URL, [
                 'headers' => self::headers(),
                 'json'    => $this->dataToSend(),
             ]);
@@ -59,7 +59,7 @@ class GcmPushNotification implements PushContract
      */
     private static function headers(){
         return [
-            'Authorization' => 'key='.API_GOOGLE_KEY,
+            'Authorization' => 'key=' . KEY_GOOGLE,
             'Content-Type' => 'application/json'
         ];
     }
