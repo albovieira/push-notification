@@ -9,6 +9,8 @@ use PushNotification\PushNotification;
 class GcmPushNotification extends PushNotification implements PushContract
 {
 
+    const FAILURE = 1;
+
     private $response;
 
     /**

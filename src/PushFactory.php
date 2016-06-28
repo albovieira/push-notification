@@ -24,7 +24,6 @@ class PushFactory
             case self::IOS:
                 return new ApnsPushNotification();
                 break;
-
         }
     }
 

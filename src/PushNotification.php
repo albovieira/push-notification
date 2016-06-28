@@ -7,8 +7,6 @@ use PushNotification\Contract\MessageContract;
 abstract class PushNotification
 {
 
-    const FAILURE = 1;
-
     /**
      * @var MessageContract
      */
