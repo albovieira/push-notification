@@ -19,7 +19,7 @@ $android
 
 ```sh
 $ios = PushNotification\PushFactory::getInstance('ios')
-    ->withTokens(['e0ba1fb9baf32dff805d30bdba786b8627182dc9aa0772082082ca05d168902d'])
+    ->withTokens(['TOKEN'])
     ->withNotification(['alert' => 'Texto', 'badge' => 1, 'sound' => 'default'])
     ->send();
 ```
