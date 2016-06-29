@@ -26,4 +26,10 @@ interface PushContract
      * @return mixed
      */
     public function withNotification(array $options);
+
+
+    /**
+     * @return array
+     */
+    public function getTokens();
 }

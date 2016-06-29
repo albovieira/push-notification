@@ -3,12 +3,10 @@
 namespace PushNotification\Apns;
 
 use PushNotification\Contract\PushContract;
+use PushNotification\PushNotification;
 
-class ApnsPushNotification implements PushContract
+class ApnsPushNotification extends PushNotification implements PushContract
 {
-
-    private $tokens;
-    private $msg;
 
     /**
      * ApnsPushNotification constructor.
@@ -26,34 +24,20 @@ class ApnsPushNotification implements PushContract
         try {
 
             $payload = json_encode($this->dataToSend());
-            $streamContext = stream_context_create();
-            stream_context_set_option($streamContext, 'ssl', 'local_cert', CERTIFICATE_IOS);
 
-            $apns = stream_socket_client(
-                'ssl://' . APNS_URL, $error, $errorString, 2, STREAM_CLIENT_CONNECT, $streamContext
-            );
-
-
-            if (!$apns) {
-                throw new \Exception("Connection failed:  $error $errorString" . PHP_EOL);
-            }
+            $apns = $this->openSocket();
 
             foreach ($this->tokens as $token) {
                 $apnsMessage = chr(0) . chr(0) . chr(32) . pack('H*', str_replace(' ', '', $token)) . chr(0) .
                     chr(strlen($payload)) . $payload;
 
-                //$tMsg = chr (0) . chr (0) . chr (32) . pack ('H*', $tToken) . pack ('n', strlen ($tBody)) . $tBody;
-                //$tMsg = chr (0) . chr (0) . chr (32) . pack ('H*', $tToken) . pack ('n', strlen ($tBody)) . $tBody;
-                //$tResult = fwrite ($tSocket, $tMsg, strlen ($tMsg));
-
                 $wrote = fwrite($apns, $apnsMessage, strlen($apnsMessage));
                 if (!$wrote) {
-                    throw new \Exception("Message delivered");
+                    throw new \Exception("Message don't delivered");
                 }
             }
 
-            @socket_close($apns);
-            @fclose($apns);
+            $this->closeSocket($apns);
 
             return ['status' => 'success'];
 
@@ -66,26 +50,6 @@ class ApnsPushNotification implements PushContract
     }
 
     /**
-     * @param $tokens
-     * @return $this
-     */
-    public function withTokens($tokens)
-    {
-        $this->tokens = $tokens;
-        return $this;
-    }
-
-    /**
-     * @param array $options
-     * @return $this
-     */
-    public function withNotification(array $options)
-    {
-        $this->msg->fill($options);
-        return $this;
-    }
-
-    /**
      * @return array
      */
     private function dataToSend()
@@ -93,6 +57,35 @@ class ApnsPushNotification implements PushContract
         return [
             'aps' => $this->msg->render()
         ];
+    }
+
+
+    /**
+     * @return resource
+     * @throws \Exception
+     */
+    private function openSocket()
+    {
+
+        $streamContext = stream_context_create();
+        stream_context_set_option($streamContext, 'ssl', 'local_cert', CERTIFICATE_APNS);
+
+        $apns = stream_socket_client(
+            'ssl://' . APNS_URL, $error, $errorString, 2, STREAM_CLIENT_CONNECT, $streamContext
+        );
+        if (!$apns) {
+            throw new \Exception("Connection failed:  $error $errorString");
+        }
+        return $apns;
+    }
+
+    /**
+     * @param $apns
+     */
+    private function closeSocket($apns)
+    {
+        @socket_close($apns);
+        @fclose($apns);
     }
 
 
