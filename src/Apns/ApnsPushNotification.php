@@ -31,10 +31,6 @@ class ApnsPushNotification extends PushNotification implements PushContract
                 $apnsMessage = chr(0) . chr(0) . chr(32) . pack('H*', str_replace(' ', '', $token)) . chr(0) .
                     chr(strlen($payload)) . $payload;
 
-                //$tMsg = chr (0) . chr (0) . chr (32) . pack ('H*', $tToken) . pack ('n', strlen ($tBody)) . $tBody;
-                //$tMsg = chr (0) . chr (0) . chr (32) . pack ('H*', $tToken) . pack ('n', strlen ($tBody)) . $tBody;
-                //$tResult = fwrite ($tSocket, $tMsg, strlen ($tMsg));
-
                 $wrote = fwrite($apns, $apnsMessage, strlen($apnsMessage));
                 if (!$wrote) {
                     throw new \Exception("Message don't delivered");
