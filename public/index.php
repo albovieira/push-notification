@@ -3,6 +3,19 @@ require_once "../bootstrap.php";
 require_once "../config.php";
 
 
+$collection = new \PushNotification\Device\Collection();
+$collection->add(1, 1);
+$collection->add(2);
+$collection->add(3);
+
+//var_dump($collection->get(1));
+//die;
+$collection->add([1 => '1']);
+$collection->clear();
+//$collection->offsetUnset(1);
+var_dump($collection);
+die;
+
 $ios = PushNotification\PushFactory::getInstance('ios')
     ->withTokens(['e0ba1fb9baf32dff805d30bdba786b8627182dc9aa0772082082ca05d168902d'])
     ->withNotification(['alert' => 'Texto', 'badge' => 1, 'sound' => 'default'])
