@@ -42,6 +42,11 @@ class Collection
         return isset($this->content[$key]) ? $this->content[$key] : false;
     }
 
+    public function all()
+    {
+        return $this->content;
+    }
+
     public function remove($key)
     {
         $this->content->offsetUnset($key);
@@ -66,13 +71,12 @@ class Collection
 
     public function first()
     {
-        return reset($this->toArray());
+        return reset($this->content);
     }
 
     public function last()
     {
-        return end($this->toArray());
+        return end($this->content);
     }
-
 
 }

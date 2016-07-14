@@ -9,8 +9,7 @@
 namespace PushNotification\Device;
 
 
-class Device
+class Device extends Collection
 {
     private $token;
-
 }
