@@ -79,4 +79,12 @@ class Collection
         return end($this->content);
     }
 
+    public function filter($fn){
+        $filtered = array_filter($this->toArray(), $fn);
+        $this->clear();
+        foreach ($filtered as $key=>$item){
+            $this->add($item,$key);
+        }
+    }
+
 }
