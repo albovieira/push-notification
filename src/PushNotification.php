@@ -11,9 +11,6 @@ abstract class PushNotification
      * @var MessageContract
      */
     protected $msg;
-    /**
-     * @var
-     */
     protected $tokens;
 
     /**
@@ -23,6 +20,17 @@ abstract class PushNotification
     public function withTokens($tokens)
     {
         $this->tokens = $tokens;
+        return $this;
+    }
+
+
+    /**
+     * @param $token
+     * @return $this
+     */
+    public function addToken($token)
+    {
+        $this->tokens[] = $token;
         return $this;
     }
 

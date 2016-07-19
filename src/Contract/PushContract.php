@@ -12,12 +12,20 @@ interface PushContract
     public function send();
 
     /**
-     * Set a token for push the notifications
+     * Set tokens for push the notifications
      *
      * @param $tokens
      * @return mixed
      */
     public function withTokens($tokens);
+
+    /**
+     * Add a token for push the notifications
+     *
+     * @param $token
+     * @return mixed
+     */
+    public function addToken($token);
 
     /**
      * Set a content for notification
