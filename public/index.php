@@ -2,6 +2,8 @@
 require_once "../bootstrap.php";
 require_once "../config.php";
 
+$android = \PushNotification\PushFactory::getInstance('android');
+$android->addToken('tkeb');
 
 $ios = PushNotification\PushFactory::getInstance('ios')
     ->withTokens(['e0ba1fb9baf32dff805d30bdba786b8627182dc9aa0772082082ca05d168902d'])

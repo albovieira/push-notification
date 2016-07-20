@@ -14,23 +14,22 @@ abstract class PushNotification
     protected $tokens;
 
     /**
-     * @param $tokens
-     * @return $this
-     */
-    public function withTokens($tokens)
-    {
-        $this->tokens = $tokens;
-        return $this;
-    }
-
-
-    /**
      * @param $token
      * @return $this
      */
     public function addToken($token)
     {
         $this->tokens[] = $token;
+        return $this;
+    }
+
+    /**
+     * @param $tokens
+     * @return $this
+     */
+    public function withTokens(array $tokens)
+    {
+        $this->tokens = $tokens;
         return $this;
     }
 

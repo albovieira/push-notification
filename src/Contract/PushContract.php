@@ -17,7 +17,7 @@ interface PushContract
      * @param $tokens
      * @return mixed
      */
-    public function withTokens($tokens);
+    public function withTokens(array $tokens);
 
     /**
      * Add a token for push the notifications
