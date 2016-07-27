@@ -15,7 +15,8 @@ class PushFactory
      * @param $os
      * @return PushContract
      */
-    public static function getInstance($os){
+    public static function create($os)
+    {
 
         switch ($os){
             case self::ANDROID:
