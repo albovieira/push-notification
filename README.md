@@ -3,7 +3,7 @@ Send push-notifications for Android(with GCM) and IOS.
 
 # Install
 ```sh
-composer require albo-vieira/push-notification dev-dev 
+composer require albo-vieira/push-notification dev-master 
 ```
 
 # Usage
