@@ -8,11 +8,14 @@ use PushNotification\PushNotification;
 class ApnsPushNotification extends PushNotification implements PushContract
 {
 
+    private $config;
+
     /**
      * ApnsPushNotification constructor.
      */
-    public function __construct()
+    public function __construct($config)
     {
+        $this->config = $config;
         $this->msg = new Message();
     }
 
@@ -68,10 +71,10 @@ class ApnsPushNotification extends PushNotification implements PushContract
     {
 
         $streamContext = stream_context_create();
-        stream_context_set_option($streamContext, 'ssl', 'local_cert', CERTIFICATE_APNS);
+        stream_context_set_option($streamContext, 'ssl', 'local_cert', $this->config['CERTIFICATE_APNS']);
 
         $apns = stream_socket_client(
-            'ssl://' . APNS_URL, $error, $errorString, 2, STREAM_CLIENT_CONNECT, $streamContext
+            'ssl://' . $this->config['APNS_URL'], $error, $errorString, 2, STREAM_CLIENT_CONNECT, $streamContext
         );
         if (!$apns) {
             throw new \Exception("Connection failed:  $error $errorString");

@@ -11,13 +11,15 @@ class GcmPushNotification extends PushNotification implements PushContract
 
     const FAILURE = 1;
 
+    private $config;
     private $response;
 
     /**
      * PushNotification constructor.
      */
-    public function __construct()
+    public function __construct($config)
     {
+        $this->config = $config;
         $this->msg = new Message();
     }
 
@@ -31,8 +33,8 @@ class GcmPushNotification extends PushNotification implements PushContract
         try{
 
             $client = new Client();
-            $response = $client->post(GCM_URL, [
-                'headers' => self::headers(),
+            $response = $client->post($this->config['GCM_URL'], [
+                'headers' => $this->headers(),
                 'json'    => $this->dataToSend(),
             ]);
 
@@ -62,9 +64,9 @@ class GcmPushNotification extends PushNotification implements PushContract
     /**
      * @return array
      */
-    private static function headers(){
+    private function headers(){
         return [
-            'Authorization' => 'key=' . KEY_GOOGLE,
+            'Authorization' => 'key=' . $this->config['KEY_GOOGLE'],
             'Content-Type' => 'application/json'
         ];
     }

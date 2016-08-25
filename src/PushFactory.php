@@ -15,14 +15,16 @@ class PushFactory
      * @param $os
      * @return PushContract
      */
-    public static function getInstance($os){
+    public static function getInstance($os, $config){
+
+        $config = $config[$os];
 
         switch ($os){
             case self::ANDROID:
-                return new GcmPushNotification();
+                return new GcmPushNotification($config);
                 break;
             case self::IOS:
-                return new ApnsPushNotification();
+                return new ApnsPushNotification($config);
                 break;
         }
     }
