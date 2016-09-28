@@ -1,5 +1,5 @@
 # push-notification
-Send push-notifications for Android(with GCM) and IOS.
+Send push-notifications for Android(with GCM) and IOS. 
 
 # Install
 ```sh
